@@ -12,7 +12,7 @@ pipeline {
             steps {
                 // TODO dev bot build stage
                 sh '''
-                echo "building..."
+                echo "building...."
 
                 '''
             }
