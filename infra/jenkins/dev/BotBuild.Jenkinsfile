@@ -12,7 +12,7 @@ pipeline {
 
 
     environment {
-        REGISTRY_URL = '700935310038.dkr.ecr.eu-west-2.amazonaws.com'
+        REPO_URL = '700935310038.dkr.ecr.eu-west-2.amazonaws.com'
         IMAGE_NAME ='ci-cd-bot'
         IMAGE_TAG = '${BUILD_NUMBER}'
    }
