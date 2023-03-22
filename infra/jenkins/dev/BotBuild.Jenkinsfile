@@ -27,7 +27,6 @@ pipeline {
                  docker build -t ${IMAGE_NAME} -f ./bot/Dockerfile .
                  docker tag ${IMAGE_NAME} ${REPO_URL}/${IMAGE_NAME}:${BUILD_NUMBER}
                  docker push ${REPO_URL}/${IMAGE_NAME}:${BUILD_NUMBER}
-
                 '''
 
 
