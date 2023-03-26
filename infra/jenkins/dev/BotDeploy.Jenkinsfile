@@ -25,9 +25,9 @@ pipeline {
                     file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
                 ]) {
                     sh '''
-                    sed "s|BOT_IMAGE_NAME|${BOT_IMAGE_NAME}|g" infra/k8s/bot.yaml > infra/k8s/bot_processed.yaml
+                    sed "s|BOT_IMAGE_NAME|${BOT_IMAGE_NAME}|g" infra/k8s/bot.yaml
                     # apply the configurations to k8s cluster
-                     kubectl set image deployment/bot-deployment bot=${BOT_IMAGE_NAME} -n ${APP_ENV}
+                     
                      kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot.yaml --namespace dev
 
                     '''
