@@ -18,5 +18,5 @@ spec:
       - name: bot
         image: ${BOT_IMAGE_NAME}
         env:
-          - name:APP_ENV
+          - name: APP_ENV
             value: "dev"
