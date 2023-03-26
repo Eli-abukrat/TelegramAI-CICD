@@ -42,7 +42,7 @@ pipeline {
 
         }
 
-        stage('Trigger  Deploy') {
+        stage('Trigger Deploy') {
             steps {
                 build job: 'BotDeploy', wait: false, parameters: [
                    string(name: 'BOT_IMAGE_NAME', value: '$REPO_URL/$IMAGE_NAME:$BUILD_NUMBER')
