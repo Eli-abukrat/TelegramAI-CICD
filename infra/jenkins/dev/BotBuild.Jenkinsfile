@@ -28,10 +28,18 @@ pipeline {
                  docker tag ${IMAGE_NAME} ${REPO_URL}/${IMAGE_NAME}:${BUILD_NUMBER}
 
                  docker push ${REPO_URL}/${IMAGE_NAME}:${BUILD_NUMBER}
+
                 '''
 
 
             }
+
+            post {
+               always {
+                   sh 'docker image prune -a --filter "until=240h" --force'
+               }
+            }
+
         }
 
         stage('Trigger Deploy') {
