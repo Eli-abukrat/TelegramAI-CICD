@@ -30,13 +30,13 @@ pipeline {
                     file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
                 ]) {
 
-                    sh '
+                    sh '''
 
                     # apply the configurations to k8s cluster
 
                      kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot.yaml --namespace dev
 
-                    '
+                    '''
                 }
             }
         }
