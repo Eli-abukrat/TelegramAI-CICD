@@ -20,7 +20,7 @@ pipeline {
 
         stage('yaml build'){
             steps {
-                sh "sed -i 's|WORKER_IMAGE|$BOT_IMAGE_NAME|g' infra/k8s/worker.yaml"
+                sh "sed -i 's|WORKER_IMAGE|$WORKER_IMAGE_NAME|g' infra/k8s/worker.yaml"
 
             }
         }
