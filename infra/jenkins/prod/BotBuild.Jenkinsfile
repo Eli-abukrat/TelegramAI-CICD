@@ -21,7 +21,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-
                 sh '''
                  aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 700935310038.dkr.ecr.eu-west-2.amazonaws.com
                  docker build -t ${IMAGE_NAME} -f bot/Dockerfile .
