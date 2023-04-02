@@ -8,10 +8,38 @@ pipeline {
     }
 
     environment {
-        APP_ENV = "prod"
+        APP_ENV = "dev"
     }
 
-    // TODO prod worker deploy pipeline
+    parameters {
+        string(name: 'WORKER_IMAGE_NAME')
+    }
 
 
+   stages {
+
+        stage('yaml build'){
+            steps {
+                sh "sed -i 's|WORKER_IMAGE|$WORKER_IMAGE_NAME|g' infra/k8s/worker.yaml"
+
+            }
+        }
+        stage('Bot Deploy') {
+            steps {
+
+                withCredentials([
+                    file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
+                ]) {
+
+                    sh '''
+
+                    # apply the configurations to k8s cluster
+
+                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/worker.yaml --namespace dev
+
+                    '''
+                }
+            }
+        }
+    }
 }

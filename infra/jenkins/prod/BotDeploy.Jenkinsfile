@@ -6,11 +6,42 @@ pipeline {
             args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
-
+    options {
+        timestamps()
+        timeout(time: 30, unit: 'MINUTES')
+    }
     environment {
         APP_ENV = "prod"
     }
+    parameters {
+        string(name: 'BOT_IMAGE_NAME')
+    }
 
-    // TODO prod bot deploy pipeline
+     stages {
+
+        stage('yaml build'){
+            steps {
+                sh "sed -i 's|BOT_IMAGE|$BOT_IMAGE_NAME|g' infra/k8s/bot.yaml"
+
+            }
+        }
+        stage('Bot Deploy') {
+            steps {
+
+                withCredentials([
+                    file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
+                ]) {
+
+                    sh '''
+
+                    # apply the configurations to k8s cluster
+
+                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot.yaml --namespace prod
+
+                    '''
+                }
+            }
+        }
+    }
 
 }
