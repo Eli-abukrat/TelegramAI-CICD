@@ -22,7 +22,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                 sudo usermod -a -G docker jenkins
+
                  aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 700935310038.dkr.ecr.eu-west-2.amazonaws.com
                  docker build -t ${IMAGE_NAME} -f bot/Dockerfile .
                  docker tag ${IMAGE_NAME} ${REPO_URL}/${IMAGE_NAME}:${BUILD_NUMBER}
