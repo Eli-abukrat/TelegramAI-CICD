@@ -11,10 +11,9 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')
     }
     environment {
+        APP_NAME = "bot"
         APP_ENV = "prod"
-        REPO_URL = '700935310038.dkr.ecr.eu-west-2.amazonaws.com'
-        IMAGE_NAME ='ci-cd-bot-prod'
-        IMAGE_TAG = '${BUILD_NUMBER}'
+
     }
     parameters {
         string(name: 'BOT_IMAGE_NAME')
