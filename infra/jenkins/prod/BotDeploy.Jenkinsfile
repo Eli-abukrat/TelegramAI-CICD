@@ -21,7 +21,7 @@ pipeline {
 
         stage('yaml build'){
             steps {
-                sh "sed -i 's|BOT_IMAGE|$BOT_IMAGE_NAME|g' infra/k8s/bot_prod.yaml"
+                sh "sed -i 's|BOT_IMAGE|$BOT_IMAGE_NAME|g' infra/k8s/bot.yaml"
 
             }
         }
@@ -36,7 +36,7 @@ pipeline {
 
                     # apply the configurations to k8s cluster
 
-                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot_prod.yaml --namespace prod
+                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot.yaml --namespace prod
 
                     '''
                 }
