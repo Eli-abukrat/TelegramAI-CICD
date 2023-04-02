@@ -35,7 +35,7 @@ pipeline {
 
                     # apply the configurations to k8s cluster
 
-                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/worker.yaml --namespace dev
+                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/worker_prod.yaml --namespace dev
 
                     '''
                 }

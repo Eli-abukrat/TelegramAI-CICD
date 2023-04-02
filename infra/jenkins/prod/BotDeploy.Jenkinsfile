@@ -36,7 +36,7 @@ pipeline {
 
                     # apply the configurations to k8s cluster
 
-                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot.yaml --namespace prod
+                     kubectl apply --kubeconfig ${KUBECONFIG} -f infra/k8s/bot_prod.yaml --namespace prod
 
                     '''
                 }
